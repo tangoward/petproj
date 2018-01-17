@@ -1,0 +1,73 @@
+
+
+{% extends 'st_dota/base.html' %}
+
+
+{% block title_block %} {{region_detail.reg_name}} DOTA 2 Teams {% endblock %}
+
+
+{% block body_block %}
+	
+	<div class="row">
+		<div class="col-sm-12">
+			
+
+			<!-- Carousel -->
+			<div class="carousel slide" id="team-slider" data-ride="carousel" >
+
+			<!-- Indicators
+			<ol class="carousel-indicators">
+				<li data-target="#team-slider" data-slide-to="0" class="active"></li>		
+			</ol>
+			 -->
+
+			<!-- Wrapper for slides -->
+				<div class="carousel-inner" role="listbox" style="text-align:center">
+					<div class="item active">
+						<h3>{{ region_detail.reg_name }} DOTA Teams </h3>
+					</div>
+					{% for region in region_detail.regions.all %}
+						<div class="item">
+							<h3> {{ region.name_team }} </h3>
+
+							<div>
+								<h4>Current Roster</h4>
+							</div>
+
+							<table style="width: 800px; margin: auto">
+								<tr style="">
+									<th style="text-align: center; border:1px solid; padding: 10px">Position</th>
+									<th style="text-align: center; border:1px solid; padding: 10px">Game ID</th>
+								</tr>
+
+								<!-- Loop to access Positions and Members Name -->
+								{% for team in region.teams.all %}
+									<tr>
+										<td style="border:1px solid green">{{ team.position }}</td>
+										<td style="border:1px solid green">{{ team.member_name }}</td>
+									</tr>
+								{% endfor %}
+							</table>
+							
+						</div>
+					{% endfor %}
+				</div>
+
+
+			<!-- Controls or Next and Previous buttons -->
+				<a href="#team-slider" class="left carousel-control" role="button" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a> 
+
+				<a href="#team-slider" class="right carousel-control" role="button" data-slide="next">
+					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a> 
+			</div>
+
+			
+		</div>
+	</div>
+
+{% endblock %}
