@@ -5,6 +5,7 @@ from django.db import models
 
 class Region_Name(models.Model):
     reg_name = models.CharField(max_length=150, unique=True)
+    region_image = models.ImageField(upload_to='reg_images', blank=True)
 
     def __str__(self):
         return self.reg_name
@@ -12,7 +13,7 @@ class Region_Name(models.Model):
 
 class Team_Name(models.Model):
     name_team = models.CharField(max_length=250, unique=True)
-    #logo = models.ImageField(upload_to='logos', blank=True)
+    logo = models.ImageField(upload_to='team_logos', blank=True)
     region_member = models.ForeignKey(Region_Name, related_name='regions', null=True, on_delete=models.SET_NULL)
 
     def __str__(self):

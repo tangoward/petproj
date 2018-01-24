@@ -5,15 +5,21 @@
 <head>
 	<meta charset="utf-8">
 	<title>{% block title_block %}BASE{% endblock %}</title>
-
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- Load staticfiles -->
+	{% load staticfiles %}
+	<link href="https://fonts.googleapis.com/css?family=Frijole" rel="stylesheet"> 
+	<link rel="stylesheet" type="text/css" href="{% static 'st_dota/st_style.css' %}">
+	
+
+	
 
 </head>
 <body>
 
 	<!-- Navbar -->
-	<nav class="navbar navbar-inverse navbar-static-top">
+	<nav class="navbar-custom navbar navbar-default navbar-static-top" >
 		<div class="container">
 			<div class="navbar-header">
 				<!-- Hamburger Icon -->
@@ -24,16 +30,16 @@
 				</button>
 
 				<!-- Brand -->
-				<a href="{% url 'homepage' %}" class="navbar-brand">sT_ DOTA</a>
+				<a href="{% url 'homepage' %}" class="navbar-brand">-root- DOTA</a>
 			</div>
 
 			<div class="collapse navbar-collapse" id="navCol">
 				<ul class="nav navbar-nav">
-					<li>
+					<li class="divider">
 						<a href="{% url 'teams:region_list' %}" class="navbar-link">TEAMS</a>
 					</li>
 
-					<li>
+					<li class="divider">
 						<a href="{% url 'matches:dota_matches' %}" class="navbar-link">MATCHES</a>
 					</li>
 				</ul>
@@ -44,13 +50,21 @@
 
 	<!--  Main Content -->
 	<div class="container">
-		
-			{% block body_block %}
+		{% block body_block %}
 
-
-			{% endblock %}
-		
+		{% endblock %}
 	</div>
+
+
+
+
+
+	<!-- Footer -->
+	<footer class="footer">
+      <div class="container">
+        <p class="text-muted">-root- DOTA</p>
+      </div>
+    </footer>
 
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

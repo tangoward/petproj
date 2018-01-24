@@ -26,10 +26,9 @@ urlpatterns = [
     path('matches/', include('matches.urls')),
 ]
 
-'''
-Point to Django where the Media Files are located in DEBUG mode
+
+# Point to Django where the Media Files are located in DEBUG mode
 
 if settings.DEBUG:
-	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-'''
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_DIR)

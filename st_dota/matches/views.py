@@ -26,6 +26,12 @@ class DotaMatches(TemplateView):
             j_data['Duration'] = str(timedelta(seconds=data['duration']))
             j_data['Finished'] = timeago.format(datetime.now() - datetime.fromtimestamp(data['start_time']))
 
+            # Check who the winner of the match
+            if data['radiant_win'] == False:
+                j_data['Winner'] = data['dire_name']
+            else:
+                j_data['Winner'] = data['radiant_name']
+
             # Put the data in our game_data list
             game_data.append(j_data)
 

@@ -9,65 +9,34 @@
 {% block body_block %}
 	
 	<div class="row">
-		<div class="col-sm-12">
-			
-
-			<!-- Carousel -->
-			<div class="carousel slide" id="team-slider" data-ride="carousel" >
-
-			<!-- Indicators
-			<ol class="carousel-indicators">
-				<li data-target="#team-slider" data-slide-to="0" class="active"></li>		
-			</ol>
-			 -->
-
-			<!-- Wrapper for slides -->
-				<div class="carousel-inner" role="listbox" style="text-align:center">
-					<div class="item active">
-						<h3>{{ region_detail.reg_name }} DOTA Teams </h3>
-					</div>
-					{% for region in region_detail.regions.all %}
-						<div class="item">
-							<h3> {{ region.name_team }} </h3>
-
-							<div>
-								<h4>Current Roster</h4>
-							</div>
-
-							<table style="width: 800px; margin: auto">
-								<tr style="">
-									<th style="text-align: center; border:1px solid; padding: 10px">Position</th>
-									<th style="text-align: center; border:1px solid; padding: 10px">Game ID</th>
-								</tr>
-
-								<!-- Loop to access Positions and Members Name -->
-								{% for team in region.teams.all %}
-									<tr>
-										<td style="border:1px solid green">{{ team.position }}</td>
-										<td style="border:1px solid green">{{ team.member_name }}</td>
-									</tr>
-								{% endfor %}
-							</table>
-							
-						</div>
-					{% endfor %}
+		{% for region in region_detail.regions.all %}
+			<div class="col-lg-4 col-md-4 col-sm-6 teams-div">
+				<div class="team-logo-div">
+					<img src="{{ region.logo.url }}" alt="Image not found." class="center-block team-logo">
 				</div>
 
+				<h3 class="team-name">{{ region.name_team }}</h3>
 
-			<!-- Controls or Next and Previous buttons -->
-				<a href="#team-slider" class="left carousel-control" role="button" data-slide="prev">
-					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-					<span class="sr-only">Previous</span>
-				</a> 
+				<div class="table-responsive">
+						<table class="table team-table">
+							<thead>
+								<th>Position</th>
+								<th>ID</th>
+							</thead>
 
-				<a href="#team-slider" class="right carousel-control" role="button" data-slide="next">
-					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-					<span class="sr-only">Next</span>
-				</a> 
+							<tbody>
+								<!-- Loop through the members -->
+								{% for member in region.teams.all %}
+								<tr>
+									<td>{{ member.position }}</td>
+									<td>{{ member.member_name }}</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
 			</div>
-
-			
-		</div>
+		{% endfor %}
 	</div>
 
 {% endblock %}

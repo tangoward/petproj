@@ -6,34 +6,36 @@
 
 
 {% block body_block %}
-
 	<div class="row">
-		<div class="col-lg-12 col-sm-12">
-			<div style="text-align: center">
-				<h3>Professional Matches</h3>
-			</div>
-			<table style="margin: auto; width: 100%">
-				<tr>
-					<th style="padding: 10px; width: 200px; text-align: center">League</th>
-					<th style="padding: 10px; width: 200px; text-align: center">Radiant</th>
-					<th style="padding: 10px; width: 200px; text-align: center">Dire</th>
-					<th style="padding: 10px; width: 200px; text-align: center">Duration</th>
-					<th style="padding: 10px; width: 200px;  text-align: center">Finished</th>
-				</tr>
+		<div class="col-lg-12 col-matches">
+			
+			<div class="table-matches table-responsive">
+				<table class="table table-condensed">
+					<thead class="matches-head">
+						<th>League</th>
+						<th>Radiant</th>
+						<th>Dire</th>
+						<th>Duration</th>
+						<th>Finished</th>
+						<th>Winner</th>
+					</thead>
 
-				{% for data_stat in game_data %}
-				<tr>
-						<!-- Lopp through the values of the dictionary -->
-						{% for value in data_stat.items %}
-							<td style="font-size: 13px; border:1px solid black; height: 150px; text-align: center"> {{value.1}} </td>
+					<tbody class="matches-data">
+						<!-- Loop through json data -->
+						{% for data in game_data %}
+							<tr class="data-result">
+								{% for value in data.items %}
+									<td>{{value.1}}</td>
+								{% endfor %}
+							</tr>
 						{% endfor %}
-						
-					
-				</tr>
-				{% endfor %}
-			</table>
+					</tbody>
+
+				</table>
+			</div>
+
 		</div>
 	</div>
-
+ 
 {% endblock %}
 
